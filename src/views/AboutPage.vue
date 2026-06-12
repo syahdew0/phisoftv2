@@ -8,7 +8,7 @@
       <!-- Desktop decorative right side -->
       <div class="absolute inset-y-0 right-0 hidden xl:block w-1/2 bg-gradient-to-bl from-[#7B1F3A]/8 to-transparent pointer-events-none"></div>
       <!-- Decorative circles -->
-      <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#C9A84C]/10 pointer-events-none hidden xl:block"></div>
+      <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full bg-[#7B1F3A]/9s0 pointer-events-none hidden xl:block"></div>
       <div class="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#7B1F3A]/5 pointer-events-none hidden xl:block"></div>
 
       <div class="relative z-10 mx-auto max-w-7xl px-6 py-24 md:px-10 xl:px-4 xl:py-32">
@@ -70,10 +70,10 @@
 
         <!-- Right: Text content -->
         <div class="w-full xl:w-1/2 lg:w-1/2">
-          <div class="flex items-center gap-2 mb-4">
+          <!-- <div class="flex items-center gap-2 mb-4">
             <span class="phi-vbar"></span>
             <span class="text-sm font-medium tracking-wider text-[#7B1F3A]">How We Start</span>
-          </div>
+          </div> -->
           <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl xl:text-4xl leading-tight">Our First Step</h2>
           <div class="mt-3 mb-6 h-0.5 w-16 bg-[#7B1F3A] opacity-50 rounded"></div>
           <p class="text-gray-600 text-sm md:text-base leading-relaxed text-justify">
@@ -118,7 +118,7 @@
         style="background-image: radial-gradient(circle, #ffffff 1px, transparent 1px); background-size: 28px 28px;"></div>
 
       <div class="relative z-10 mx-auto max-w-5xl px-6 py-16 md:px-10">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
           <div class="stat-item flex flex-col items-center gap-3">
             <div class="w-14 h-14 rounded-full bg-white/15 flex items-center justify-center">
               <i class="fas fa-history text-white text-xl"></i>
@@ -139,13 +139,6 @@
             </div>
             <p class="text-5xl font-bold text-white">17</p>
             <p class="text-white/75 text-sm">Happy Clients</p>
-          </div>
-          <div class="stat-item flex flex-col items-center gap-3">
-            <div class="w-14 h-14 rounded-full bg-white/15 flex items-center justify-center">
-              <i class="fas fa-users text-white text-xl"></i>
-            </div>
-            <p class="text-5xl font-bold text-white">50+</p>
-            <p class="text-white/75 text-sm">Team Members</p>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar-shell sticky top-0 z-50">
+  <nav class="navbar-shell">
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-10">
       <!-- Logo -->
       <router-link to="/" class="flex items-center gap-3">
@@ -7,9 +7,9 @@
           v-if="siteInfo.logo"
           :src="siteInfo.logo"
           :alt="siteInfo.name"
-          class="h-9 w-auto object-contain"
+          class="h-20 w-auto object-contain scale-125"
         />
-        <div v-else class="flex h-9 w-9 items-center justify-center rounded-xl bg-[#7B1F3A] text-white">
+        <div v-else class="flex h-16 w-16 items-center justify-center rounded-xl bg-[#7B1F3A] text-white">
           <i class="fas fa-building text-sm"></i>
         </div>
         <!-- <span class="text-lg font-bold text-slate-900">{{ siteInfo.name || 'CompanyProfile' }}</span> -->
@@ -72,7 +72,7 @@
             @click="mobileMenuOpen = false"
             class="btn-primary mt-3 block w-full text-center !text-xs"
           >
-            Hubungi Kami
+            Contact
           </router-link>
         </div>
       </div>
@@ -90,6 +90,31 @@ const route = useRoute();
 const mobileMenuOpen = ref(false);
 
 const siteInfo = ref({ name: '', logo: '' });
+
+const HOME_STORAGE_KEY = 'customPageData:Home';
+
+const parse = (data) => {
+  if (!data) return null;
+  if (typeof data === 'string') { try { return JSON.parse(data); } catch { return null; } }
+  return data;
+};
+
+const loadLogoFromCache = () => {
+  try {
+    const raw = localStorage.getItem(HOME_STORAGE_KEY);
+    const source = raw ? JSON.parse(raw) : null;
+    if (!source) return;
+    const section = source['logo_phisoft30'];
+    if (!section) return;
+    const items = (Array.isArray(section) ? section : [section]).map(i => parse(i) || {});
+    const found = items.slice().reverse().find(obj => {
+      const url = obj?.image || obj?.url || '';
+      return url && !url.includes('localhost');
+    }) || items[0];
+    const url = found?.image || found?.url || '';
+    if (url) siteInfo.value = { ...siteInfo.value, logo: url };
+  } catch { /* keep existing */ }
+};
 
 const defaultMenuItems = [
   { label: 'Home', path: '/' },
@@ -116,6 +141,8 @@ const fetchSiteInfo = async () => {
     }
   } catch (error) {
     console.warn('Failed to fetch site info', error);
+  } finally {
+    loadLogoFromCache();
   }
 };
 
@@ -135,6 +162,7 @@ const fetchMenu = async () => {
 };
 
 onMounted(() => {
+  loadLogoFromCache();
   fetchSiteInfo();
   fetchMenu();
 });

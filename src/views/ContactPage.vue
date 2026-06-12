@@ -3,16 +3,17 @@
 
     <!-- ─── HERO ─────────────────────────────────────────────────────────── -->
     <section class="contact-hero relative w-full overflow-hidden">
-      <!-- Maroon overlay (mobile/tablet) -->
-      <div class="absolute inset-0 xl:hidden bg-[#7B1F3A]/90"></div>
-      <!-- Desktop: decorative gradient right side -->
-      <div class="absolute inset-y-0 right-0 hidden xl:block w-1/2 bg-gradient-to-bl from-[#7B1F3A]/10 to-transparent pointer-events-none"></div>
+      <!-- Background image with overlay (mobile/tablet) -->
+      <div
+        class="hero-bg-overlay absolute inset-0 xl:hidden"
+        :style="{ backgroundImage: `url('${heroImage}')`, backgroundSize: 'cover', backgroundPosition: 'center' }"
+      >
+        <div class="absolute inset-0 bg-[#7B1F3A]/70"></div>
+      </div>
 
-      <div class="relative z-10 mx-auto max-w-7xl px-6 py-20 md:px-10 xl:px-4 xl:py-28">
-        <div class="max-w-xl">
-          <span class="inline-block rounded-full bg-white/15 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white xl:text-[#7B1F3A] xl:bg-[#7B1F3A]/10">
-            Kontak
-          </span>
+      <div class="relative mx-auto flex max-w-7xl flex-col-reverse items-start justify-between px-6 py-20 md:px-10 xl:flex-row xl:px-4 xl:py-28">
+        <!-- Left: Text Content -->
+        <div class="z-10 w-full xl:w-1/2 xl:py-10">
           <h1 class="mt-5 text-3xl font-semibold leading-tight text-white xl:text-gray-800 sm:text-4xl md:text-4xl relative inline-block">
             Contact Information
             <span class="absolute -bottom-1 left-0 w-full h-2 bg-[#C9A84C] opacity-30 rounded"></span>
@@ -29,6 +30,15 @@
             <i class="fas fa-arrow-right text-xs transition-transform duration-200 group-hover:translate-x-1"></i>
           </a>
         </div>
+
+        <!-- Right: Image (xl only) -->
+        <div class="z-10 hidden w-full xl:flex xl:w-1/2 xl:pl-6 items-center justify-center relative">
+          <img
+            :src="heroImage"
+            alt="Contact"
+            class="absolute -right-10 -top-10 w-[480px] h-[480px] rounded-full object-cover"
+          />
+        </div>
       </div>
     </section>
 
@@ -38,8 +48,8 @@
 
         <!-- Left: Illustration placeholder -->
         <div class="flex w-full xl:w-1/2 items-center justify-center">
-          <div class="contact-illustration flex items-center justify-center w-full max-w-sm h-64 xl:h-80 rounded-3xl bg-gradient-to-br from-[#7B1F3A]/8 to-[#C9A84C]/10">
-            <i class="fas fa-headset text-[#7B1F3A] opacity-20" style="font-size: 8rem;"></i>
+          <div class="contact-illustration flex items-center justify-center w-full max-w-sm h-64 xl:h-80">
+            <img src="https://apicompro.phisoft.co.id/uploads/1781254287039-Sent%20Message-bro.png" alt="Contact Illustration" class="w-full h-full object-contain" />
           </div>
         </div>
 
@@ -146,10 +156,10 @@
           </form>
         </div>
 
-        <!-- Right: Illustration placeholder -->
+        <!-- Right: Illustration -->
         <div class="flex w-full xl:w-1/2 items-center justify-center">
-          <div class="flex items-center justify-center w-full max-w-sm h-64 xl:h-80 rounded-3xl bg-gradient-to-br from-[#7B1F3A]/8 to-[#C9A84C]/10">
-            <i class="fas fa-paper-plane text-[#7B1F3A] opacity-20" style="font-size: 8rem;"></i>
+          <div class="flex items-center justify-center w-full max-w-sm h-64 xl:h-80">
+            <img src="https://apicompro.phisoft.co.id/uploads/1781254293678-Server-amico.png" alt="Contact Form Illustration" class="w-full h-full object-contain" />
           </div>
         </div>
       </div>
@@ -183,9 +193,39 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import API_ENDPOINTS from '@/config/api';
+
+const HOME_STORAGE_KEY = 'customPageData:Home';
+const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1800&q=80';
+
+const heroImage = ref(DEFAULT_IMAGE);
+
+const parse = (data) => {
+  if (!data) return null;
+  if (typeof data === 'string') { try { return JSON.parse(data); } catch { return null; } }
+  return data;
+};
+
+const loadHeroImage = () => {
+  try {
+    const raw = localStorage.getItem(HOME_STORAGE_KEY);
+    const source = raw ? JSON.parse(raw) : null;
+    if (!source) return;
+    const section = source['home_image_title30'];
+    if (!section) return;
+    const items = (Array.isArray(section) ? section : [section]).map(i => parse(i) || {});
+    const found = items.slice().reverse().find(obj => {
+      const url = obj?.image || obj?.url || '';
+      return url && !url.includes('localhost');
+    }) || items[0];
+    const url = found?.image || found?.url || '';
+    if (url) heroImage.value = url;
+  } catch { /* keep default */ }
+};
+
+onMounted(() => { loadHeroImage(); });
 
 const form = ref({ name: '', email: '', message: '' });
 const isSubmitting = ref(false);
