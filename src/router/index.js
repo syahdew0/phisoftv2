@@ -5,10 +5,10 @@ const routes = [
   { path: '/', name: 'home', component: PageManagement },
   { path: '/listing', name: 'listing', component: () => import('@/views/ListingPage.vue') },
   { path: '/listing/:id', name: 'listing-detail', component: () => import('@/views/ListingDetailPage.vue') },
-  { path: '/blog', name: 'blog', component: () => import('@/views/BlogPage.vue') },
+  // { path: '/blog', name: 'blog', component: () => import('@/views/BlogPage.vue') },
   { path: '/contact', name: 'contact', component: () => import('@/views/ContactPage.vue') },
   { path: '/about', name: 'about', component: () => import('@/views/AboutPage.vue') },
-  { path: '/help', name: 'help', component: () => import('@/views/HelpPage.vue') },
+  // { path: '/help', name: 'help', component: () => import('@/views/HelpPage.vue') },
 ];
 
 const router = createRouter({

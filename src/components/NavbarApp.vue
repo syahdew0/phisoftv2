@@ -17,7 +17,7 @@
 
       <!-- Desktop Menu -->
       <div class="hidden items-center gap-1 md:flex">
-        <template v-for="item in menuItems" :key="item.path">
+        <template v-for="item in navLinks" :key="item.path">
           <a
             v-if="item.external"
             :href="item.href"
@@ -32,9 +32,15 @@
             :class="{ 'nav-link-active': isActive(item.path) }"
           >{{ item.label }}</router-link>
         </template>
-        <router-link to="/contact" class="btn-primary ml-3 !px-5 !py-2.5 !text-xs">
-          Contact
-        </router-link>
+        <component
+          v-if="ctaItem"
+          :is="ctaItem.external ? 'a' : 'router-link'"
+          :to="!ctaItem.external ? ctaItem.path : undefined"
+          :href="ctaItem.external ? ctaItem.href : undefined"
+          :target="ctaItem.external ? '_blank' : undefined"
+          :rel="ctaItem.external ? 'noopener noreferrer' : undefined"
+          class="btn-primary ml-3 !px-5 !py-2.5 !text-xs"
+        >{{ ctaItem.label }}</component>
       </div>
 
       <!-- Mobile Hamburger -->
@@ -50,7 +56,7 @@
     <transition name="slide-down">
       <div v-if="mobileMenuOpen" class="mobile-menu border-t border-maroon-100 md:hidden">
         <div class="space-y-1 px-4 py-4">
-          <template v-for="item in menuItems" :key="'m-' + item.path">
+          <template v-for="item in navLinks" :key="'m-' + item.path">
             <a
               v-if="item.external"
               :href="item.href"
@@ -67,13 +73,16 @@
               :class="{ 'bg-[#f5ece8] text-[#752918]': isActive(item.path) }"
             >{{ item.label }}</router-link>
           </template>
-          <router-link
-            to="/contact"
+          <component
+            v-if="ctaItem"
+            :is="ctaItem.external ? 'a' : 'router-link'"
+            :to="!ctaItem.external ? ctaItem.path : undefined"
+            :href="ctaItem.external ? ctaItem.href : undefined"
+            :target="ctaItem.external ? '_blank' : undefined"
+            :rel="ctaItem.external ? 'noopener noreferrer' : undefined"
             @click="mobileMenuOpen = false"
             class="btn-primary mt-3 block w-full text-center !text-xs"
-          >
-            Contact
-          </router-link>
+          >{{ ctaItem.label }}</component>
         </div>
       </div>
     </transition>
@@ -81,7 +90,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 import API_ENDPOINTS from '@/config/api';
@@ -119,14 +128,23 @@ const loadLogoFromCache = () => {
 const defaultMenuItems = [
   { label: 'Home', path: '/' },
   { label: 'About Us', path: '/about' },
-  { label: 'Blog', path: '/blog', href: 'https://phisoft.co.id/blog/', external: true },
+  { label: 'Blog', path: '/blog', href: 'blog.phisoft.co.id ', external: true },
 ];
 
 const menuItems = ref([...defaultMenuItems]);
 
+const navLinks = computed(() => menuItems.value.slice(0, -1));
+const ctaItem  = computed(() => menuItems.value[menuItems.value.length - 1]);
+
 const isActive = (path) => {
   if (path === '/') return route.path === '/';
   return route.path.startsWith(path.replace('/#', ''));
+};
+
+const setFavicon = (url) => {
+  if (!url) return;
+  const link = document.getElementById('app-favicon');
+  if (link) link.href = url;
 };
 
 const fetchSiteInfo = async () => {
@@ -134,27 +152,32 @@ const fetchSiteInfo = async () => {
     const response = await axios.get(API_ENDPOINTS.siteInfo());
     const data = response.data?.data || response.data;
     if (data) {
-      siteInfo.value = {
-        name: data.name || data.site_name || '',
-        logo: data.logo_url || data.logo || data.logo_path || data.site_logo || '',
-      };
+      const logo = data.logo_url || data.logo || data.logo_path || data.site_logo || '';
+      siteInfo.value = { name: data.name || data.site_name || '', logo };
+      setFavicon(logo);
     }
   } catch (error) {
     console.warn('Failed to fetch site info', error);
   } finally {
     loadLogoFromCache();
+    setFavicon(siteInfo.value.logo);
   }
 };
 
+const mapMenuItem = (item) => ({
+  label: item.title || item.name,
+  path: item.path || item.url || item.link || '/',
+  external: !!item.open_in_new_tab,
+  href: item.open_in_new_tab ? (item.path || item.url || item.link || '/') : undefined,
+  children: Array.isArray(item.children) ? item.children.map(mapMenuItem) : [],
+});
+
 const fetchMenu = async () => {
   try {
-    const response = await axios.get(API_ENDPOINTS.menuListByGroup('header'));
+    const response = await axios.get(API_ENDPOINTS.menuListByGroup('phisoft'));
     const data = response.data?.data || response.data || [];
     if (Array.isArray(data) && data.length > 0) {
-      menuItems.value = data.map(item => ({
-        label: item.title || item.name,
-        path: item.url || item.link || '/',
-      }));
+      menuItems.value = data.map(mapMenuItem);
     }
   } catch (error) {
     console.warn('Using default menu items', error);
@@ -173,8 +196,8 @@ onMounted(() => {
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(123, 31, 58, 0.1);
-  box-shadow: 0 1px 3px rgba(123, 31, 58, 0.06);
+  border-bottom: 1px solid rgba(117, 41, 24, 0.1);
+  box-shadow: 0 1px 3px rgba(117, 41, 24, 0.06);
 }
 
 .mobile-menu {
@@ -184,7 +207,7 @@ onMounted(() => {
 
 .nav-link-active {
   color: #752918 !important;
-  background: rgba(123, 31, 58, 0.08);
+  background: rgba(117, 41, 24, 0.08);
 }
 
 .slide-down-enter-active,
