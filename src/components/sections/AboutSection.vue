@@ -1,5 +1,5 @@
 <template>
-  <section class="section-container font-poppins antialiased bg-[#6b1a33]">
+  <section class="section-container font-poppins antialiased bg-[#752918]">
     <div class="relative w-full flex flex-col-reverse xl:flex-row lg:flex-row items-start justify-between gap-10">
 
       <!-- Left: Text + Features -->
@@ -19,7 +19,7 @@
             :key="index"
             class="about-feature-row flex items-start gap-3 py-4"
           >
-            <div class="feature-icon-wrap flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#FDF0F3] text-[#7B1F3A] transition-all duration-300">
+            <div class="feature-icon-wrap flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#f5ece8] text-[#752918] transition-all duration-300">
               <i class="fas fa-check text-sm"></i>
             </div>
             <div>
@@ -31,7 +31,7 @@
 
         <div class="mt-8">
           <router-link to="/contact"
-            class="inline-flex items-center gap-2 rounded-full border-2 border-white bg-white px-6 py-2.5 text-sm font-medium text-[#7B1F3A] transition-all duration-300 hover:bg-transparent hover:text-white">
+            class="inline-flex items-center gap-2 rounded-full border-2 border-white bg-white px-6 py-2.5 text-sm font-medium text-[#752918] transition-all duration-300 hover:bg-transparent hover:text-white">
             Read More<i class="fas fa-arrow-right text-xs transition-transform duration-200 group-hover:translate-x-1"></i>
           </router-link>
         </div>
@@ -45,7 +45,7 @@
             :alt="sectionState.title"
             class="h-[320px] w-full object-cover md:h-[460px] hover:scale-105 transition-transform duration-700"
           />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#7B1F3A]/60 via-transparent to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#752918]/60 via-transparent to-transparent"></div>
         
         </div>
       </div>
@@ -138,6 +138,6 @@ onMounted(() => { applyContentFromProps(); });
   border-bottom: none;
 }
 .about-image-card {
-  border: 1px solid rgba(123, 31, 58, 0.15);
+  border: 1px solid rgba(117, 41, 24, 0.15);
 }
 </style>

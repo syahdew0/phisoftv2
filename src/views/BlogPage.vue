@@ -82,5 +82,5 @@ onMounted(() => { fetchPosts(); });
 </script>
 
 <style scoped>
-.page-header { background: linear-gradient(135deg, #7B1F3A, #4A1020); }
+.page-header { background: linear-gradient(135deg, #752918, #4A1020); }
 </style>

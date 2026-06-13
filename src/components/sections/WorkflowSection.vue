@@ -1,5 +1,5 @@
 <template>
-  <section class="section-container font-poppins antialiased bg-[#6b1a33]">
+  <section class="section-container font-poppins antialiased bg-[#752918]">
     <div class="flex flex-col lg:flex-row items-center gap-14 xl:gap-20">
 
       <!-- Left: Illustration -->
@@ -27,8 +27,8 @@
           </div>
           <!-- Floating badge -->
           <div class="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-lg px-4 py-3 flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-[#7B1F3A]/10 flex items-center justify-center">
-              <i class="fas fa-check-double text-[#7B1F3A] text-sm"></i>
+            <div class="w-9 h-9 rounded-full bg-[#752918]/10 flex items-center justify-center">
+              <i class="fas fa-check-double text-[#752918] text-sm"></i>
             </div>
             <div>
               <p class="text-xs font-semibold text-gray-800">Proven Process</p>

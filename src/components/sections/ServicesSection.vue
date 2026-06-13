@@ -20,7 +20,7 @@
             :key="index"
             class="service-row group relative cursor-default rounded-xl border border-gray-200 bg-white px-5 py-4"
           >
-            <h3 class="text-base font-semibold text-[#7B1F3A] group-hover:text-[#7B1F3A] transition-colors duration-300">
+            <h3 class="text-base font-semibold text-[#752918] group-hover:text-[#752918] transition-colors duration-300">
               {{ item.title }}
             </h3>
             <p class="mt-1 text-sm text-gray-500 leading-relaxed">{{ item.content }}</p>

@@ -34,7 +34,9 @@
               :is="product.link && product.link.startsWith('/') ? 'router-link' : 'a'"
               :to="product.link && product.link.startsWith('/') ? product.link : undefined"
               :href="product.link && !product.link.startsWith('/') ? product.link : undefined"
-              class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-[#7B1F3A]"
+              :target="product.link && !product.link.startsWith('/') ? '_blank' : undefined"
+              :rel="product.link && !product.link.startsWith('/') ? 'noopener noreferrer' : undefined"
+              class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors duration-200 hover:text-[#752918]"
             >
               <i class="fas fa-chevron-right text-xs"></i>
               Learn More
@@ -85,34 +87,46 @@ const baseSection = {
       image: 'https://apicompro.phisoft.co.id/uploads/1781172217488-cloudhomes.26f4afaa.png',
     },
     {
+      title: 'Melody V2',
+      content: 'Coming soon',
+      link: 'https://melodyv2.phisoft.co.id/',
+      image: 'https://apicompro.phisoft.co.id/uploads/1781182028235-Screenshot%202026-06-11%20at%2019.44.51.png',
+    },
+    {
       title: 'Ficus',
       content: 'Ficus is an enterprise resource planning (ERP) solution designed to streamline business operations including procurement, inventory, finance, and human resources in a single integrated platform.',
-      link: 'https://ficus.phisoft.co.id/',
+      link: 'https://ficus.psggroup.id/',
       image: 'https://apicompro.phisoft.co.id/uploads/1781181995892-Screenshot%202026-06-11%20at%2019.41.34.png',
     },
     {
       title: 'AI CV Screening',
       content: 'AI CV Screening automates the recruitment process by using artificial intelligence to analyze, rank, and shortlist candidates based on job requirements, saving HR teams significant time and effort.',
       link: 'https://aicv.psggroup.id/',
-      image: 'https://apicompro.phisoft.co.id/uploads/1781181986298-Screenshot%202026-06-11%20at%2019.43.19.png',
+      image: 'https://apicompro.phisoft.co.id/uploads/1781331758225-ChatGPT%20Image%2013%20Jun%202026,%2013.19.49.png',
     },
     {
       title: 'Kerja AI',
       content: 'Kerja AI is an intelligent workforce management tool that leverages AI to optimize scheduling, task assignment, and performance tracking for teams across various industries.',
       link: 'https://kerja.ai',
-      image: 'https://apicompro.phisoft.co.id/uploads/1781181948535-Screenshot%202026-06-11%20at%2019.43.45.png',
+      image: 'https://apicompro.phisoft.co.id/uploads/1781328161005-ChatGPT_Image_13_Jun_2026__12.18.31-removebg-preview.png',
     },
     {
       title: 'Relasi AI',
       content: 'Relasi AI is a smart CRM powered by artificial intelligence that helps businesses build stronger customer relationships through automated follow-ups, sentiment analysis, and personalized engagement.',
       link: 'https://relasi.ai/',
-      image: 'https://apicompro.phisoft.co.id/uploads/1781181964273-Screenshot%202026-06-11%20at%2019.43.30.png',
+      image: 'https://apicompro.phisoft.co.id/uploads/1781331464177-ChatGPT%20Image%2013%20Jun%202026,%2013.16.38.png',
     },
     {
-      title: 'Melody V2',
-      content: 'Comiing soon',
-      link: '/products/melody-v2',
-      image: 'https://apicompro.phisoft.co.id/uploads/1781182028235-Screenshot%202026-06-11%20at%2019.44.51.png',
+      title: 'Kring AI',
+      content: 'Kring AI is an AI-powered communication platform that automates customer interactions through smart call handling, voice recognition, and intelligent routing — helping businesses deliver faster and more responsive support.',
+      link: 'https://kring.ai/',
+      image: 'https://apicompro.phisoft.co.id/uploads/1781331715556-ChatGPT%20Image%2013%20Jun%202026,%2013.21.36.png',
+    },
+    {
+      title: 'Jurnal AI',
+      content: 'Jurnal AI is an AI-assisted journaling and reporting platform that helps businesses and individuals capture, organize, and analyze written records with smart summarization, tagging, and insight generation.',
+      link: 'https://jurnal.ai/',
+      image: 'https://apicompro.phisoft.co.id/uploads/1781331819066-ChatGPT%20Image%2013%20Jun%202026,%2013.23.09.png',
     },
   ],
 };

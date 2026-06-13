@@ -11,8 +11,8 @@
 
     <div class="section-container">
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <div v-for="topic in helpTopics" :key="topic.title" class="rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-[#7B1F3A]/30 hover:shadow-md">
-          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#FDF0F3] text-[#7B1F3A]">
+        <div v-for="topic in helpTopics" :key="topic.title" class="rounded-xl border border-gray-200 bg-white p-6 transition-all hover:border-[#752918]/30 hover:shadow-md">
+          <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#f5ece8] text-[#752918]">
             <i :class="topic.icon" class="text-lg"></i>
           </div>
           <h3 class="mb-2 text-lg font-semibold text-gray-800">{{ topic.title }}</h3>
@@ -23,7 +23,7 @@
       <div class="mt-16 rounded-2xl p-10 text-center text-white cta-band">
         <h2 class="text-3xl font-bold">Masih butuh bantuan?</h2>
         <p class="mx-auto mt-3 max-w-md text-[#E8D08A]">Tim kami siap membantu Anda. Hubungi kami melalui email atau telepon.</p>
-        <router-link to="/contact" class="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#7B1F3A] shadow-lg transition hover:shadow-xl hover:scale-105">
+        <router-link to="/contact" class="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#752918] shadow-lg transition hover:shadow-xl hover:scale-105">
           Hubungi Tim Dukungan <i class="fas fa-arrow-right"></i>
         </router-link>
       </div>
@@ -43,6 +43,6 @@ const helpTopics = [
 </script>
 
 <style scoped>
-.page-header { background: linear-gradient(135deg, #7B1F3A, #4A1020); }
-.cta-band { background: linear-gradient(135deg, #7B1F3A, #C9A84C); }
+.page-header { background: linear-gradient(135deg, #752918, #4A1020); }
+.cta-band { background: linear-gradient(135deg, #752918, #C9A84C); }
 </style>

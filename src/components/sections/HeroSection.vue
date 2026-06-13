@@ -7,7 +7,7 @@
         class="hero-bg-overlay absolute inset-0 xl:hidden"
         :style="{ backgroundImage: `url('${sectionState.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }"
       >
-        <div class="absolute inset-0 bg-[#7B1F3A]/70"></div>
+        <div class="absolute inset-0 bg-[#752918]/70"></div>
       </div>
 
       <div class="relative mx-auto flex max-w-7xl flex-col-reverse items-start justify-between px-6 py-10 xl:flex-row xl:py-20 md:px-10 lg:px-10 xl:px-4">
@@ -16,7 +16,7 @@
           <!-- Badge -->
           <div class="flex items-center gap-2 mb-4">
             <span class="phi-vbar"></span>
-            <span class="text-sm font-medium tracking-wider text-white xl:text-[#7B1F3A]">
+            <span class="text-sm font-medium tracking-wider text-white xl:text-[#752918]">
               {{ sectionState.badge }}
             </span>
           </div>
@@ -78,7 +78,7 @@
         class="absolute inset-0"
         :style="{ backgroundImage: `url('${sectionState.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }"
       >
-        <div class="absolute inset-0 bg-[#7B1F3A]/70"></div>
+        <div class="absolute inset-0 bg-[#752918]/70"></div>
       </div>
       <!-- <div class="relative z-10 mx-auto max-w-7xl px-6 py-14 md:px-10 lg:px-10 xl:px-10">
         <div class="grid grid-cols-1 gap-8 text-center sm:grid-cols-3">
@@ -224,17 +224,17 @@ onMounted(() => {
 }
 .btn-hero-secondary:hover {
   background: #ffffff;
-  color: #7B1F3A;
+  color: #752918;
   transform: scale(1.05);
 }
 @media (min-width: 1280px) {
   .btn-hero-secondary {
-    border-color: #7B1F3A;
-    color: #7B1F3A;
+    border-color: #752918;
+    color: #752918;
     background: transparent;
   }
   .btn-hero-secondary:hover {
-    background: #7B1F3A;
+    background: #752918;
     color: #ffffff;
   }
 }

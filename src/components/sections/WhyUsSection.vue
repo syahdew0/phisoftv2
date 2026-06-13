@@ -12,7 +12,7 @@
         <div class="mb-12 text-center">
           <div class="inline-flex items-center gap-2 mb-4">
             <span class="phi-vbar"></span>
-            <span class="text-sm font-medium tracking-wider text-[#7B1F3A]">{{ sectionState.badge }}</span>
+            <span class="text-sm font-medium tracking-wider text-[#752918]">{{ sectionState.badge }}</span>
           </div>
           <h2 class="text-3xl font-semibold text-gray-800 md:text-4xl leading-tight">
             {{ sectionState.title }}
@@ -41,7 +41,7 @@
 
             <!-- Card content -->
             <div class="relative z-10 flex flex-col">
-              <div class="mb-5 text-[#7B1F3A] group-hover:text-white transition-colors duration-300">
+              <div class="mb-5 text-[#752918] group-hover:text-white transition-colors duration-300">
                 <i :class="[item.icon, 'text-4xl']"></i>
               </div>
               <h3 class="text-base font-semibold text-gray-800 group-hover:text-white transition-colors duration-300 leading-snug">

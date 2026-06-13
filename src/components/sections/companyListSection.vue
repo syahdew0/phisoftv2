@@ -34,10 +34,10 @@
             class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-          <div class="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-0.5 text-xs font-semibold uppercase tracking-wide text-[#7B1F3A]">
+          <div class="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-0.5 text-xs font-semibold uppercase tracking-wide text-[#752918]">
             Solution
           </div>
-          <div class="absolute right-3 top-3 rounded-full bg-[#7B1F3A] px-3 py-0.5 text-xs font-semibold text-white shadow-md">
+          <div class="absolute right-3 top-3 rounded-full bg-[#752918] px-3 py-0.5 text-xs font-semibold text-white shadow-md">
             {{ formatPrice(listing.price) }}
           </div>
         </div>
@@ -50,10 +50,10 @@
           </p>
           <div class="flex items-center justify-between text-sm text-gray-400">
             <div class="flex items-center gap-1">
-              <i class="fas fa-map-marker-alt text-[#7B1F3A]"></i>
+              <i class="fas fa-map-marker-alt text-[#752918]"></i>
               <span>{{ listing.kabupaten }}, {{ listing.provinsi }}</span>
             </div>
-            <span class="font-semibold text-[#7B1F3A] group-hover:translate-x-1 transition-transform duration-200 inline-flex items-center gap-1">
+            <span class="font-semibold text-[#752918] group-hover:translate-x-1 transition-transform duration-200 inline-flex items-center gap-1">
               Detail <i class="fas fa-arrow-right text-xs"></i>
             </span>
           </div>
@@ -173,9 +173,9 @@ onMounted(() => { applyContentFromProps(); fetchListings(); });
 </script>
 
 <style scoped>
-.category-pill-active { border-color: #7B1F3A; background: #7B1F3A; color: #fff; box-shadow: 0 8px 20px -10px rgba(123, 31, 58, 0.6); }
+.category-pill-active { border-color: #752918; background: #752918; color: #fff; box-shadow: 0 8px 20px -10px rgba(123, 31, 58, 0.6); }
 .category-pill-idle { border-color: #d1d5db; background: #ffffff; color: #374151; }
-.category-pill-idle:hover { border-color: #7B1F3A; color: #7B1F3A; }
+.category-pill-idle:hover { border-color: #752918; color: #752918; }
 .listing-card {
   border: 1px solid #e5e7eb;
   border-radius: 1rem;

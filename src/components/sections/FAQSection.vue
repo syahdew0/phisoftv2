@@ -8,10 +8,10 @@
       </div>
       <div class="space-y-3">
         <div v-for="(faq, index) in sectionState.items" :key="index" class="faq-item overflow-hidden">
-          <button @click="toggleFaq(index)" class="flex w-full items-center justify-between gap-4 p-5 text-left transition hover:bg-[#FDF0F3]/40">
+          <button @click="toggleFaq(index)" class="flex w-full items-center justify-between gap-4 p-5 text-left transition hover:bg-[#f5ece8]/40">
             <h3 class="pr-4 text-base font-semibold text-gray-800">{{ faq.question }}</h3>
             <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-all duration-300"
-              :class="openFaq === index ? 'border-[#7B1F3A] bg-[#7B1F3A] text-white' : 'border-gray-300 text-gray-500'">
+              :class="openFaq === index ? 'border-[#752918] bg-[#752918] text-white' : 'border-gray-300 text-gray-500'">
               <i :class="['fas text-xs', openFaq === index ? 'fa-chevron-up' : 'fa-chevron-down']"></i>
             </span>
           </button>

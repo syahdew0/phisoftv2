@@ -7,7 +7,7 @@
           <span class="section-kicker">{{ sectionState.badge }}</span>
           <h2 class="mt-4 text-3xl font-semibold leading-tight text-white md:text-4xl">{{ sectionState.title }}</h2>
           <p class="mt-4 max-w-md text-base leading-relaxed text-[#E8D08A]">{{ sectionState.subtitle }}</p>
-          <router-link to="/contact" class="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-white bg-white px-6 py-2.5 text-sm font-medium text-[#7B1F3A] shadow-lg transition-all duration-300 hover:bg-[#7B1F3A] hover:text-white hover:scale-105">
+          <router-link to="/contact" class="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-white bg-white px-6 py-2.5 text-sm font-medium text-[#752918] shadow-lg transition-all duration-300 hover:bg-[#752918] hover:text-white hover:scale-105">
             Hubungi Sekarang <i class="fas fa-arrow-right text-xs"></i>
           </router-link>
         </div>
@@ -16,12 +16,12 @@
         <div class="contact-right grid content-center gap-4 p-6 md:p-8">
           <div v-for="(info, index) in sectionState.contactInfo" :key="index" class="contact-info-card p-4">
             <div class="flex items-center gap-4">
-              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#7B1F3A] text-white">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#752918] text-white">
                 <i :class="info.icon || 'fas fa-info'" class="text-sm"></i>
               </div>
               <div class="min-w-0">
-                <p class="text-xs font-semibold uppercase tracking-wider text-[#7B1F3A]">{{ info.title }}</p>
-                <a v-if="info.link || info.Link" :href="info.link || info.Link" class="mt-0.5 block text-sm font-medium text-gray-800 break-all hover:text-[#7B1F3A] transition-colors">{{ info.link || info.Link }}</a>
+                <p class="text-xs font-semibold uppercase tracking-wider text-[#752918]">{{ info.title }}</p>
+                <a v-if="info.link || info.Link" :href="info.link || info.Link" class="mt-0.5 block text-sm font-medium text-gray-800 break-all hover:text-[#752918] transition-colors">{{ info.link || info.Link }}</a>
                 <p v-else class="mt-0.5 text-sm font-medium text-gray-800">{{ info.content }}</p>
               </div>
             </div>
@@ -100,7 +100,7 @@ onMounted(() => { applyContentFromProps(); });
   box-shadow: 0 8px 32px rgba(123, 31, 58, 0.10);
 }
 .contact-left {
-  background: linear-gradient(135deg, #7B1F3A, #C9A84C);
+  background: linear-gradient(135deg, #752918, #C9A84C);
 }
 .contact-left .section-kicker {
   background: rgba(255,255,255,0.15);

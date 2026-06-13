@@ -8,13 +8,13 @@
 
     <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
       <article v-for="testimonial in testimonials" :key="testimonial.id || testimonial.name" class="testimonial-card relative p-7">
-        <div class="mb-4 text-[#7B1F3A] opacity-20"><i class="fas fa-quote-left text-4xl"></i></div>
+        <div class="mb-4 text-[#752918] opacity-20"><i class="fas fa-quote-left text-4xl"></i></div>
         <div class="mb-3 flex items-center gap-0.5">
           <i v-for="star in 5" :key="star" class="fas fa-star text-yellow-400 text-sm"></i>
         </div>
         <p class="mb-6 text-gray-600 text-sm leading-relaxed italic">{{ testimonial.content }}</p>
         <div class="flex items-center gap-3 border-t border-gray-100 pt-5">
-          <div class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#7B1F3A] text-xs font-bold text-white">
+          <div class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-[#752918] text-xs font-bold text-white">
             <img v-if="testimonial.avatar" :src="testimonial.avatar" :alt="testimonial.name" class="h-full w-full object-cover" />
             <span v-else>{{ getInitials(testimonial.name) }}</span>
           </div>

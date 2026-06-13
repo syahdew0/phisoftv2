@@ -9,7 +9,7 @@
           :alt="siteInfo.name"
           class="h-20 w-auto object-contain scale-125"
         />
-        <div v-else class="flex h-16 w-16 items-center justify-center rounded-xl bg-[#7B1F3A] text-white">
+        <div v-else class="flex h-16 w-16 items-center justify-center rounded-xl bg-[#752918] text-white">
           <i class="fas fa-building text-sm"></i>
         </div>
         <!-- <span class="text-lg font-bold text-slate-900">{{ siteInfo.name || 'CompanyProfile' }}</span> -->
@@ -23,12 +23,12 @@
             :href="item.href"
             target="_blank"
             rel="noopener noreferrer"
-            class="nav-link rounded-lg px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:bg-[#FDF0F3] hover:text-[#7B1F3A]"
+            class="nav-link rounded-lg px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:bg-[#f5ece8] hover:text-[#752918]"
           >{{ item.label }}</a>
           <router-link
             v-else
             :to="item.path"
-            class="nav-link rounded-lg px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:bg-[#FDF0F3] hover:text-[#7B1F3A]"
+            class="nav-link rounded-lg px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:bg-[#f5ece8] hover:text-[#752918]"
             :class="{ 'nav-link-active': isActive(item.path) }"
           >{{ item.label }}</router-link>
         </template>
@@ -57,14 +57,14 @@
               target="_blank"
               rel="noopener noreferrer"
               @click="mobileMenuOpen = false"
-              class="block rounded-lg px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#FDF0F3] hover:text-[#7B1F3A]"
+              class="block rounded-lg px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#f5ece8] hover:text-[#752918]"
             >{{ item.label }}</a>
             <router-link
               v-else
               :to="item.path"
               @click="mobileMenuOpen = false"
-              class="block rounded-lg px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#FDF0F3] hover:text-[#7B1F3A]"
-              :class="{ 'bg-[#FDF0F3] text-[#7B1F3A]': isActive(item.path) }"
+              class="block rounded-lg px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#f5ece8] hover:text-[#752918]"
+              :class="{ 'bg-[#f5ece8] text-[#752918]': isActive(item.path) }"
             >{{ item.label }}</router-link>
           </template>
           <router-link
@@ -183,7 +183,7 @@ onMounted(() => {
 }
 
 .nav-link-active {
-  color: #7B1F3A !important;
+  color: #752918 !important;
   background: rgba(123, 31, 58, 0.08);
 }
 
