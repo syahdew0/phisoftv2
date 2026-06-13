@@ -141,10 +141,16 @@ const isActive = (path) => {
   return route.path.startsWith(path.replace('/#', ''));
 };
 
+const toHttps = (url) => url?.replace(/^http:\/\//i, 'https://') || url;
+
 const setFavicon = (url) => {
   if (!url) return;
-  const link = document.getElementById('app-favicon');
-  if (link) link.href = url;
+  document.querySelectorAll('link[rel*="icon"]').forEach(el => el.remove());
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/png';
+  link.href = toHttps(url);
+  document.head.appendChild(link);
 };
 
 const fetchSiteInfo = async () => {
@@ -152,7 +158,7 @@ const fetchSiteInfo = async () => {
     const response = await axios.get(API_ENDPOINTS.siteInfo());
     const data = response.data?.data || response.data;
     if (data) {
-      const logo = data.logo_url || data.logo || data.logo_path || data.site_logo || '';
+      const logo = toHttps(data.logo_url || data.logo || data.logo_path || data.site_logo || '');
       siteInfo.value = { name: data.name || data.site_name || '', logo };
       setFavicon(logo);
     }
@@ -177,7 +183,13 @@ const fetchMenu = async () => {
     const response = await axios.get(API_ENDPOINTS.menuListByGroup('phisoft'));
     const data = response.data?.data || response.data || [];
     if (Array.isArray(data) && data.length > 0) {
-      menuItems.value = data.map(mapMenuItem);
+      menuItems.value = data
+        .slice()
+        .sort((a, b) => {
+          const orderDiff = (a.order ?? 0) - (b.order ?? 0);
+          return orderDiff !== 0 ? orderDiff : (a.id ?? 0) - (b.id ?? 0);
+        })
+        .map(mapMenuItem);
     }
   } catch (error) {
     console.warn('Using default menu items', error);
