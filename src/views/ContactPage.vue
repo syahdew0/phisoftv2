@@ -6,7 +6,7 @@
       <!-- Background image with overlay (mobile/tablet) -->
       <div
         class="hero-bg-overlay absolute inset-0 xl:hidden"
-        :style="{ backgroundImage: `url('${heroImage}')`, backgroundSize: 'cover', backgroundPosition: 'center' }"
+        :style="{ backgroundImage: `url('${pageState.hero.image}')`, backgroundSize: 'cover', backgroundPosition: 'center' }"
       >
         <div class="absolute inset-0 bg-[#752918]/70"></div>
       </div>
@@ -15,14 +15,14 @@
         <!-- Left: Text Content -->
         <div class="z-10 w-full xl:w-1/2 xl:py-10">
           <h1 class="mt-5 text-3xl font-semibold leading-tight text-white xl:text-gray-800 sm:text-4xl md:text-4xl relative inline-block">
-            Contact Information
+            {{ pageState.hero.title }}
             <span class="absolute -bottom-1 left-0 w-full h-2 bg-[#C9A84C] opacity-30 rounded"></span>
           </h1>
           <p class="mt-6 text-sm font-light leading-relaxed text-white/90 xl:text-gray-600 md:text-base max-w-lg">
-            Got questions, ideas, or feedback? Reach out to us — we're here to listen, collaborate, and make things happen together!
+            {{ pageState.hero.subtitle }}
           </p>
           <a
-            href="https://wa.me/628111623222?text=Halo,%20saya%20tertarik%20dengan%20produk%20Phisoft.%20Saya%20ingin%20mencari%20tahu%20lebih%20lanjut%20tentang%20produk%20ini!"
+            :href="pageState.hero.waLink"
             target="_blank" rel="noopener noreferrer"
             class="mt-8 inline-flex items-center gap-2 rounded-full bg-[#752918] px-6 py-2.5 text-sm font-medium text-white border-2 border-[#752918] shadow-lg transition-all duration-300 hover:bg-white hover:text-[#752918] hover:scale-105 xl:bg-white xl:text-[#752918] xl:hover:bg-[#752918] xl:hover:text-white"
           >
@@ -34,7 +34,7 @@
         <!-- Right: Image (xl only) -->
         <div class="z-10 hidden w-full xl:flex xl:w-1/2 xl:pl-6 items-center justify-center relative">
           <img
-            :src="heroImage"
+            :src="pageState.hero.image"
             alt="Contact"
             class="absolute -right-10 -top-10 w-[480px] h-[480px] rounded-full object-cover"
           />
@@ -58,12 +58,12 @@
           <div class="mb-6">
             <div class="flex items-center gap-2 mb-4">
               <span class="phi-vbar"></span>
-              <span class="text-sm font-medium tracking-wider text-[#752918]">Contact Us</span>
+              <span class="text-sm font-medium tracking-wider text-[#752918]">{{ pageState.info.badge }}</span>
             </div>
-            <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl">Let's Connect</h2>
+            <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl">{{ pageState.info.heading }}</h2>
             <div class="mt-3 mb-4 h-0.5 w-16 bg-[#752918] opacity-50 rounded"></div>
             <p class="text-gray-500 text-sm md:text-base leading-relaxed">
-              Feel free to contact us anytime. We will get back to you as soon as we can.
+              {{ pageState.info.desc }}
             </p>
           </div>
 
@@ -87,8 +87,8 @@
               </div>
               <div>
                 <p class="text-sm font-semibold text-[#752918]">Support</p>
-                <p class="text-sm text-gray-700">halo@phisoft.co.id</p>
-                <p class="text-sm font-medium text-gray-800">(081) 11623222</p>
+                <p class="text-sm text-gray-700">{{ pageState.contact.email }}</p>
+                <p class="text-sm font-medium text-gray-800">{{ pageState.contact.phone }}</p>
               </div>
             </div>
 
@@ -100,7 +100,7 @@
               <div>
                 <p class="text-sm font-semibold text-[#752918]">Address</p>
                 <p class="text-sm text-gray-700 max-w-sm leading-relaxed">
-                  Gold Coast Office, Liberty Tower OTB 20B Pantai Indah Kapuk, Kota Jakarta Utara, DKI Jakarta, 14470 - Indonesia
+                  {{ pageState.contact.address }}
                 </p>
               </div>
             </div>
@@ -117,12 +117,12 @@
         <div class="w-full xl:w-1/2">
           <div class="flex items-center gap-2 mb-4">
             <span class="phi-vbar"></span>
-            <span class="text-sm font-medium tracking-wider text-[#752918]">Get In Touch</span>
+            <span class="text-sm font-medium tracking-wider text-[#752918]">{{ pageState.form.badge }}</span>
           </div>
-          <h2 class="text-2xl font-semibold text-[#752918] md:text-3xl">Say Hi to the team</h2>
+          <h2 class="text-2xl font-semibold text-[#752918] md:text-3xl">{{ pageState.form.heading }}</h2>
           <div class="mt-2 mb-5 h-1 w-14 bg-[#C9A84C] rounded"></div>
           <p class="text-gray-500 text-sm md:text-base mb-6 leading-relaxed max-w-md">
-            Whether you have questions, ideas, or feedback, we're here to listen and collaborate. Simply fill out the form below, and we'll get back to you promptly.
+            {{ pageState.form.desc }}
           </p>
 
           <form @submit.prevent="submitForm" class="space-y-4">
@@ -180,7 +180,7 @@
       <div class="overflow-hidden rounded-2xl shadow-lg h-[420px] md:h-[500px]">
         <iframe
           class="w-full h-full"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.208682575002!2d106.7401227!3d-6.102575700000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1d241e007f0d%3A0x7bf18422ba371c19!2sGold%20Coast%20Office!5e0!3m2!1sid!2sid!4v1744441165320!5m2!1sid!2sid"
+          :src="pageState.map.src"
           style="border:0;"
           allowfullscreen=""
           loading="lazy"
@@ -197,10 +197,45 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import API_ENDPOINTS from '@/config/api';
 
-const HOME_STORAGE_KEY = 'customPageData:Home';
-const DEFAULT_IMAGE = 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1800&q=80';
+const CONTACT_STORAGE_KEY = 'customPageData:Contact';
+const FOOTER_STORAGE_KEY  = 'customPageData:Footer';
 
-const heroImage = ref(DEFAULT_IMAGE);
+const DEFAULT_IMAGE = 'https://apicompro.phisoft.co.id/uploads/1781175548509-bg%204.png';
+const DEFAULT_WA    = 'https://wa.me/628111623222?text=Halo,%20saya%20tertarik%20dengan%20produk%20Phisoft.%20Saya%20ingin%20mencari%20tahu%20lebih%20lanjut%20tentang%20produk%20ini!';
+const DEFAULT_MAP   = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.208682575002!2d106.7401227!3d-6.102575700000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6a1d241e007f0d%3A0x7bf18422ba371c19!2sGold%20Coast%20Office!5e0!3m2!1sid!2sid!4v1744441165320!5m2!1sid!2sid';
+
+const baseSection = {
+  hero: {
+    image:    DEFAULT_IMAGE,
+    title:    'Contact Information',
+    subtitle: 'Got questions, ideas, or feedback? Reach out to us — we\'re here to listen, collaborate, and make things happen together!',
+    waLink:   DEFAULT_WA,
+  },
+  info: {
+    badge:   'Contact Us',
+    heading: 'Let\'s Connect',
+    desc:    'Feel free to contact us anytime. We will get back to you as soon as we can.',
+  },
+  contact: {
+    phone:   '(081) 11623222',
+    email:   'halo@phisoft.co.id',
+    address: 'Gold Coast Office, Liberty Tower OTB 20B Pantai Indah Kapuk, Kota Jakarta Utara, DKI Jakarta, 14470 - Indonesia',
+  },
+  form: {
+    badge:   'Get In Touch',
+    heading: 'Say Hi to the team',
+    desc:    'Whether you have questions, ideas, or feedback, we\'re here to listen and collaborate. Simply fill out the form below, and we\'ll get back to you promptly.',
+  },
+  map: { src: DEFAULT_MAP },
+};
+
+const pageState = ref({
+  hero:    { ...baseSection.hero },
+  info:    { ...baseSection.info },
+  contact: { ...baseSection.contact },
+  form:    { ...baseSection.form },
+  map:     { ...baseSection.map },
+});
 
 const parse = (data) => {
   if (!data) return null;
@@ -208,24 +243,90 @@ const parse = (data) => {
   return data;
 };
 
-const loadHeroImage = () => {
-  try {
-    const raw = localStorage.getItem(HOME_STORAGE_KEY);
-    const source = raw ? JSON.parse(raw) : null;
-    if (!source) return;
-    const section = source['home_image_title30'];
-    if (!section) return;
-    const items = (Array.isArray(section) ? section : [section]).map(i => parse(i) || {});
-    const found = items.slice().reverse().find(obj => {
-      const url = obj?.image || obj?.url || '';
-      return url && !url.includes('localhost');
-    }) || items[0];
-    const url = found?.image || found?.url || '';
-    if (url) heroImage.value = url;
-  } catch { /* keep default */ }
+const getItemByTag = (tag, allData) => {
+  const section = allData?.[tag];
+  if (!section) return [];
+  const parseItem = (item) => parse(item) || {};
+  return Array.isArray(section) ? section.map(parseItem) : [parseItem(section)];
 };
 
-onMounted(() => { loadHeroImage(); });
+const getField = (obj, key1, key2) => (obj ? obj[key1] || obj[key2] || '' : '');
+
+const applyContent = (source) => {
+  // contact_header → hero
+  const headerObj = getItemByTag('contact_header30', source)[0] || {};
+
+  // contact_badge5 → info badge
+  const badgeObj  = getItemByTag('contact_badge30', source)[0] || {};
+
+  // contact_main5 → form heading & desc
+  const mainObj   = getItemByTag('contact_main30', source)[0] || {};
+
+  // contact_maps → map iframe src
+  const mapsObj   = getItemByTag('contact_maps30', source)[0] || {};
+
+  // footer_contact30 (array: [0]=phone, [1]=email, [2]=address) from Footer cache
+  let footerSource = {};
+  try {
+    const raw = localStorage.getItem(FOOTER_STORAGE_KEY);
+    footerSource = raw ? JSON.parse(raw) : {};
+  } catch { /* keep empty */ }
+  const contactArr = getItemByTag('footer_contact30', footerSource);
+  const contactPhone   = contactArr[0] ? (getField(contactArr[0], 'phone', 'tel')       || getField(contactArr[0], 'title', 'content')) : '';
+  const contactEmail   = contactArr[1] ? (getField(contactArr[1], 'email', 'mail')      || getField(contactArr[1], 'title', 'content')) : '';
+  const contactAddress = contactArr[2] ? (getField(contactArr[2], 'address', 'location') || getField(contactArr[2], 'title', 'content')) : '';
+
+  pageState.value = {
+    hero: {
+      image:    getField(headerObj, 'image', 'url')          || baseSection.hero.image,
+      title:    getField(headerObj, 'title', 'name')         || baseSection.hero.title,
+      subtitle: getField(headerObj, 'content', 'description')|| baseSection.hero.subtitle,
+      waLink:   baseSection.hero.waLink,
+    },
+    info: {
+      badge:   getField(badgeObj, 'title', 'name') || baseSection.info.badge,
+      heading: baseSection.info.heading,
+      desc:    baseSection.info.desc,
+    },
+    contact: {
+      phone:   contactPhone   || baseSection.contact.phone,
+      email:   contactEmail   || baseSection.contact.email,
+      address: contactAddress || baseSection.contact.address,
+    },
+    form: {
+      badge:   baseSection.form.badge,
+      heading: getField(mainObj, 'title', 'name')          || baseSection.form.heading,
+      desc:    getField(mainObj, 'content', 'description') || baseSection.form.desc,
+    },
+    map: {
+      src: getField(mapsObj, 'link', 'url') || baseSection.map.src,
+    },
+  };
+};
+
+const getCachedData = () => {
+  if (typeof window === 'undefined') return null;
+  try { const raw = localStorage.getItem(CONTACT_STORAGE_KEY); return raw ? JSON.parse(raw) : null; }
+  catch { return null; }
+};
+
+const fetchContactData = async () => {
+  try {
+    const response = await axios.get(API_ENDPOINTS.customPages, { params: { page: 'Contact' } });
+    const data = response.data?.data || response.data || {};
+    try { localStorage.setItem(CONTACT_STORAGE_KEY, JSON.stringify(data)); } catch (e) { console.warn('localStorage write failed', e); }
+    applyContent(data);
+  } catch {
+    const cached = getCachedData();
+    if (cached) applyContent(cached);
+  }
+};
+
+onMounted(() => {
+  const cached = getCachedData();
+  if (cached) applyContent(cached);
+  fetchContactData();
+});
 
 const form = ref({ name: '', email: '', message: '' });
 const isSubmitting = ref(false);

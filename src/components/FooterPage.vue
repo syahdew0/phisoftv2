@@ -147,10 +147,15 @@ const applyContent = () => {
   const cached = getCachedData();
   const source = (props.pageData && Object.keys(props.pageData || {}).length && props.pageData) || cached || {};
 
-  const brandObj   = getItemByTag('footer_brand30',   source)[0] || {};
-  const contactObj = getItemByTag('footer_contact30', source)[0] || {};
-  const socialObjs = getItemByTag('footer_social30',  source);
-  const linkObjs   = getItemByTag('footer_link30',    source);
+  const brandObj    = getItemByTag('footer_brand30',   source)[0] || {};
+  const contactArr  = getItemByTag('footer_contact30', source);
+  const socialObjs  = getItemByTag('footer_social30',  source);
+  const linkObjs    = getItemByTag('footer_link30',    source);
+
+  // footer_contact30 is an array: [0]=phone, [1]=email, [2]=address — each stored in 'title'
+  const contactPhone   = contactArr[0] ? (getField(contactArr[0], 'phone', 'tel')      || getField(contactArr[0], 'title', 'content')) : '';
+  const contactEmail   = contactArr[1] ? (getField(contactArr[1], 'email', 'mail')     || getField(contactArr[1], 'title', 'content')) : '';
+  const contactAddress = contactArr[2] ? (getField(contactArr[2], 'address', 'location') || getField(contactArr[2], 'title', 'content')) : '';
 
   footerState.value = {
     brand: {
@@ -159,9 +164,9 @@ const applyContent = () => {
       operationalHours: getField(brandObj, 'operationalHours', 'hours') || baseSection.brand.operationalHours,
     },
     contact: {
-      phone:   getField(contactObj, 'phone',   'tel')     || baseSection.contact.phone,
-      email:   getField(contactObj, 'email',   'mail')    || baseSection.contact.email,
-      address: getField(contactObj, 'address', 'location')|| baseSection.contact.address,
+      phone:   contactPhone   || baseSection.contact.phone,
+      email:   contactEmail   || baseSection.contact.email,
+      address: contactAddress || baseSection.contact.address,
     },
     socials: socialObjs.length > 0
       ? socialObjs.map(s => ({ icon: getField(s, 'icon', 'class') || '#', link: getField(s, 'link', 'url') || '#' }))

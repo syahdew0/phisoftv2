@@ -6,8 +6,8 @@
     <ServicesSection :pageData="pageData" />
     <ProductsSection :pageData="pageData" />
     <ClientsSection :pageData="pageData" />
-    <AboutSection :pageData="pageData" />
-    <WorkflowSection :pageData="pageData" />
+    <!-- <AboutSection :pageData="pageData" />
+    <WorkflowSection :pageData="pageData" /> -->
     <!-- <companyListSection :pageData="pageData" /> -->
     <!-- <TestimonialsSection :pageData="pageData" />
     <FAQSection :pageData="pageData" />
@@ -20,8 +20,8 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import HeroSection from '@/components/sections/HeroSection.vue';
 import WhyUsSection from '@/components/sections/WhyUsSection.vue';
-import AboutSection from '@/components/sections/AboutSection.vue';
-import WorkflowSection from '@/components/sections/WorkflowSection.vue';
+// import AboutSection from '@/components/sections/AboutSection.vue';
+// import WorkflowSection from '@/components/sections/WorkflowSection.vue';
 import ServicesSection from '@/components/sections/ServicesSection.vue';
 import ProductsSection from '@/components/sections/ProductsSection.vue';
 import ClientsSection from '@/components/sections/ClientsSection.vue';
